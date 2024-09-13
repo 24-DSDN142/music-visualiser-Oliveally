@@ -1,7 +1,20 @@
 
+let firstRun = true;
+let heartImg;
+let heartInvertImg;
+
+
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(7,39,63,255)
+  if (firstRun) {
+    heartImg = loadImage("Heartforcode.png");
+    heartInvertImg = loadImage("HeartforcodeINVERTED.png");
+
+    firstRun = false;
+  }
+
+
+  background(1,12,22,255)
   textFont('Verdana'); // please use CSS safe fonts
   rectMode(CENTER)
   textSize(24);
@@ -9,31 +22,56 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    let bar_spacing = height / 10;
    let bar_height = width / 12;
    let bar_pos_x = width / 2;
- 
+   let rotationspeed = map(drum,0,width,0.1,1); //changes rotation speed of ellipses
+  
+// large background ellipses 
 
-   // vocal bar is red
-   fill(200, 0, 0);
-   rect(bar_pos_x, height / 2 + 1 * bar_spacing, 4 * vocal, bar_height);
-   fill(0);
-   text("vocals", bar_pos_x, height / 2 + 1 * bar_spacing + 8);
- 
-   // drum bar is green
-   fill(0, 200, 0);
-   rect(bar_pos_x, height / 2 + 2 * bar_spacing, 4 * drum, bar_height);
-   fill(0);
-   text("drums", bar_pos_x, height / 2 + 2 * bar_spacing + 8);
- 
-   // bass bar is blue
-   fill(50, 50, 240);
-   rect(bar_pos_x, height / 2 + 3 * bar_spacing, 4 * bass, bar_height);
-   fill(0);
-   text("bass", bar_pos_x, height / 2 + 3 * bar_spacing + 8);
- 
-   // other bar is white
-   fill(200, 200, 200);
-   rect(bar_pos_x, height / 2 + 4 * bar_spacing, 4 * other, bar_height);
-   fill(0);
-   text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
-   fill(255, 255, 0);
- 
+push();
+translate(canvasWidth/2, canvasHeight/2)
+scale(0.5);
+if (drum > 50) {
+  image(heartInvertImg, -2183/2, -1542/2);
+}
+else {
+  image(heartImg, -2183/2, -1542/2);
+}
+pop();
+
+push();
+if(bass > 0) {
+  fill (173,216,230,255);
+  ellipse(1920-200, 1080-200, drum, drum)}
+
+   // small background ellipses
+push();
+   if(counter > 1) {
+    map(drum,0,100,200,200);
+    fill (7,39,63,255);
+    ellipse(200, 200, drum, drum);
+    }
+push();
+   if(counter > 1) {
+    map(drum,0,100,200,200);
+    fill (173,216,230,255);
+    ellipse(1920-200, 200, drum, drum);
+    }  
+
+push();
+    if(counter > 1) {
+     map(drum,0,100,200,200);
+     fill (173,216,230,255);
+     ellipse(200, 1080-200, drum, drum);
+     }
+     
+push();
+  if(counter > 1) {
+    map(drum,0,100,400,400);
+    fill (7,39,63,255);
+    ellipse(1920-200, 1080-200, drum, drum);}
+
+
+   pop();
+
+
+
 }
