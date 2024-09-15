@@ -25,6 +25,22 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
 // heart monitor lines
 
+if (bass > 0){
+  push();
+  translate(canvasWidth/2,canvasHeight/2);
+  map(bass,0,100,200,200);
+  image(heartmonitorIMG1,-2183/2,-1542/2,bass,bass);
+  
+}
+  pop();
+
+  push();
+  translate(canvasWidth/2, canvasHeight/2);
+  scale(0.5);
+  if (bass > 50) {
+    image(heartmonitor2IMG,-2183,-1542); 
+  }
+  pop();
 
 // heart
 if (drum > 1){
@@ -80,20 +96,6 @@ push();
 
 
    pop();
-
-   if (bass > 0){
-    map(bass,0,100,200,200);
-    image(heartmonitorIMG1,-2183/2,-1542/2,bass,bass);
-    }
-    
-    push();
-    translate(canvasWidth/2, CanvasHeight/2);
-    scale(0.5);
-    if (bass > 50) {
-      image(heartmonitor2IMG,-2183,-1542); 
-    }
-    pop()
-  
 
 
 
