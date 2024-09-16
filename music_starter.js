@@ -4,7 +4,8 @@ let heartImg;
 let heartInvertImg;
 let heartmonitorIMG1;
 let heartmonitor2IMG;
-
+let heartmonitorFLIPPED;
+let heartmonitorWHITE;
 
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
@@ -14,6 +15,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     heartInvertImg = loadImage("HeartforcodeINVERTED.png");
     heartmonitorIMG1 = loadImage("heartmonitor1IMG.png");
     heartmonitor2IMG = loadImage("heartmonitor2IMG.png"); 
+    heartmonitorFLIPPED = loadImage ("heartmonitorFLIPPED.png");
+    heartmonitorWHITE = loadImage ("heartmonitorWHITE.png");
     firstRun = false;
   }
 
@@ -25,26 +28,27 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
 // heart monitor lines
 
-if (bass > 0){
   push();
-  translate(canvasWidth/2,canvasHeight/2);
-  map(bass,0,100,200,200);
-  image(heartmonitorIMG1,-2183/2,-1542/2,bass,bass);
-  
-}
+  translate(canvasWidth/2, canvasHeight/2);
+  if ( bass > 0 ) {
+    image(heartmonitorIMG1,-5444/2,-880/2,bass,bass);}
   pop();
+
 
   push();
   translate(canvasWidth/2, canvasHeight/2);
   scale(0.5);
   if (bass > 50) {
-    image(heartmonitor2IMG,-2183,-1542); 
+    image(heartmonitorWHITE, -5444/2, -880/2);
+  }
+  else {
+    image(heartmonitorIMG1, -5444/2, -880/2);
   }
   pop();
 
 // heart
 if (drum > 1){
-  map(drum,0,100,200,200);
+  (map(drum,0,100,200,200));
   image(heartInvertImg, -2183/2, -1542/2, drum, drum);
 }
 
@@ -59,15 +63,7 @@ else {
 }
 pop();
 
-// heart image beat
-
-
-push();
-if(bass > 0) {
-  fill (173,216,230,255);
-  ellipse(1920-200, 1080-200, drum, drum)}
-
-   // small background ellipses
+// small background ellipses
 push();
    if(counter > 1) {
     map(drum,0,100,200,200);
@@ -96,7 +92,6 @@ push();
 
 
    pop();
-
 
 
 }
